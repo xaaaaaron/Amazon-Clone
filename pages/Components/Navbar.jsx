@@ -14,6 +14,7 @@ const Navbar = () => {
                         height={40}
                         objectFit="contain"
                         className="cursor-pointer"
+                        alt="text"
                     />
                 </div>
             {/*searchbar */}

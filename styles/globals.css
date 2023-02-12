@@ -1,4 +1,4 @@
-:root {
+/*:root {
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
@@ -104,4 +104,28 @@ a {
   html {
     color-scheme: dark;
   }
+}
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .link {
+    @apply cursor-pointer hover:underline
+  }
+
+  .bolded {
+    @apply hidden md:inline font-extrabold md:text-sm mt-2
+  }
+
+  .button {
+    @apply p-2 text-xs md:text-sm
+     bg-gradient-to-b from-yellow-400
+      to-yellow-400 border border-yellow-200
+       rounded-md focus:outline-none focus:ring-2
+        focus:ring-yellow-500 active:from-yellow-500
+  }
+
+
 }

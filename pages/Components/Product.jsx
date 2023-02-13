@@ -5,17 +5,27 @@ import {useState, useEffect} from 'react'
 import Currency from "react-currency-formatter"
 
 const Product = ({id, title, price, description, category, image}) => {
+    const [items, setItems] = useState(0)
     const MAX_RATING = 5;
     const MIN_RATING = 1;
-    const [rating] = useState(1
-        //Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
+    const [rating] = useState(
+        Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
         )
-    const [hasPrime] = useState(Math.random() < 0.5 )
+    const [hasPrime] = useState(Math.random() < 0.5)
+
+    function addItems() {
+        setItems(items + 1)
+        localStorage.setItem('cart', items)
+    }
+    
+    
+
+
     return (
         <div className="relative flex flex-col m-5 bg-white z-30 p-10">
             <p className="absolute top-2 right-2 text-xs italic text-gray-400">{category}</p>
             <Image className="my-auto mx-auto" src={image} height={200} width={200} objectFit="contain" alt="text" />
-            <h4 className="my-3">{title}</h4>
+            <h4 className="my-3 font-semibold">{title}</h4>
             <div className="flex">
                 {Array(rating)
                 .fill()
@@ -37,7 +47,7 @@ const Product = ({id, title, price, description, category, image}) => {
                 </div>
             )}
 
-            <button className="mt-auto button">Add to Cart</button>
+            <button className="mt-auto button" onClick={addItems}>Add to Cart</button>
         </div>
     )
 }

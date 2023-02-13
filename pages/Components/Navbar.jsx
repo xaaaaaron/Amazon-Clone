@@ -1,12 +1,21 @@
 import React from 'react'
 import Image from 'next/image'
 import { MagnifyingGlassIcon, ShoppingCartIcon, Bars4Icon } from "@heroicons/react/24/outline"
+import {useEffect, useState} from 'react'
 
 const Navbar = () => {
+
+    const [items, setItems] = useState()
+
+    useEffect(() => {
+        const items = localStorage.getItem('cart')
+        setItems(items)
+    }, [items])
+
     return (
         <header>
             {/*navbar */}
-            <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
+            <div className="sticky-top z-0 flex items-center bg-amazon_blue p-1 flex-grow py-2">
                 <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
                     <Image
                         src="https://links.papareact.com/f90"
@@ -18,8 +27,8 @@ const Navbar = () => {
                     />
                 </div>
             {/*searchbar */}
-                <div className="hidden mx-4 sm:flex items-center h-10 rounded-md cursor-pointer flex-grow bg-yellow-400 hover:bg-yellow-500">
-                    <input className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md px-4 focus:outline-none" type="text" />
+                <div className="hidden mx-10 sm:flex items-center h-10 rounded-md cursor-pointer flex-grow bg-yellow-400 hover:bg-yellow-500">
+                    <input className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md px-2 focus:outline-none" type="text" placeholder="Search here"/>
                     <MagnifyingGlassIcon className="h-12 p-4"/>
                 </div>
             {/* right*/}
@@ -35,7 +44,7 @@ const Navbar = () => {
                     </div>
                         
                     <div className="relative link flex items-center">
-                        <span className="absolute top-0 right-0 md:right-5 h-4 w-4 bg-yellow-400 text-center text-black font-bold rounded-lg">0</span>
+                        <span className="absolute top-0 right-0 md:right-5 h-4 w-4 bg-yellow-400 text-center text-black font-bold rounded-lg">{items}</span>
                         <ShoppingCartIcon className="h-10" />
                         <p className="bolded">Cart</p>
                     </div>
